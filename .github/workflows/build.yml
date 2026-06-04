@@ -1,0 +1,23 @@
+name: Build macOS app
+
+on: [push]
+
+jobs:
+  build-macos:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+      - name: Install dependencies
+        run: |
+          pip install pyinstaller numpy matplotlib scikit-image tqdm pillow
+      - name: Build
+        run: |
+          pyinstaller --onefile --windowed CrossCorrelation_merged.py
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: CrossCorrelation-macOS
+          path: dist/
