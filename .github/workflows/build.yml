@@ -18,7 +18,7 @@ jobs:
 
       - name: Build
         run: |
-          pyinstaller --onefile --windowed CrossCorrelation_merged.py
+          pyinstaller --onefile --windowed CrossCorrelation.py
 
       - name: Upload artifact
         uses: actions/upload-artifact@v4
